@@ -1,0 +1,7 @@
+.grid{
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit,minmax(100px,1fr)) !important;
+    grid-column-gap: 10px !important;
+    max-width: 1250px !important;
+
+}

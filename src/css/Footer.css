@@ -1,0 +1,42 @@
+.fmdiv{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.social{
+    color: gray;
+    border: 1px solid gray;
+    border-radius: 100%;
+    margin-right: 13px;
+    padding: 6px;
+    margin-top:6px;
+    font-size: 12px !important;
+}
+
+.footercredit{
+background-color: teal;
+color: white;
+max-height: 55px;
+}
+
+.bannerTitle{
+    padding-right: 20px;
+    border-right: 1px solid gray;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 26px;
+}
+.bannerlinkImg{
+    margin: 52px 32px 10px;
+}
+.bannerlinkImg >img{
+    width: 128px;
+    height: 40px;
+    margin-right: 8px;
+    
+}
+
+.fc {
+    color: rgba(0,47,52,.64) !important;
+}

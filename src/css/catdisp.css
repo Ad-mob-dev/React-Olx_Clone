@@ -1,0 +1,29 @@
+.headerImg{
+    max-width: 100% !important;
+    min-width: 300px;
+    max-height: 300px;
+    min-height: 150px;
+    overflow: hidden;
+}
+
+.headerImgDiv{
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+}
+
+.mgrid{
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit,minmax(150px,1fr)) !important;
+    grid-column-gap: 10px !important;
+    max-width: 1300px !important;
+
+}
+
+.xcard{
+    width:284px !important;
+    margin-left: 55px !important;
+    margin-right: 25px !important;
+    margin-bottom: 10px !important;
+    margin-top: 10px !important; 
+}

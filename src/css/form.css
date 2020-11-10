@@ -1,0 +1,162 @@
+.maindiv{
+          width: 900px !important;
+        margin:auto;
+        border: 1px solid black;
+}
+.fheader{
+    border-bottom:1px solid black;
+}
+
+.fdetails,.upload,.location,.userdetails{
+    border-bottom: 1px solid black;
+}
+
+.new,.used{
+    border: 1px solid black;
+    font-size: 13px;
+}
+.new:hover,.used:hover{
+    border: 1px solid teal !important;
+    background-color: aquamarine !important;
+    color:teal;
+}
+
+.new:focus,.used:focus{
+    background-color: rgb(200, 248, 246);
+    box-shadow: rgb(0, 164, 159) 0px 0px 0px 2px inset;
+    color: rgb(0, 164, 159);
+    font-weight: 700;
+    outline-color: transparent;
+    border: 1px solid rgb(0, 164, 159);
+    
+}
+
+
+.funameinp{
+    width: 255px;
+    padding:8px;
+   }
+
+.ad-titleinp,.priceinp,.uphoneinp{
+    padding:8px;
+}
+
+.funameinp:focus,.ad-titleinp:focus,.descriptiontextarea:focus,.priceinp:focus,.stateselect:focus,.cityselect:focus{
+    outline-color: teal !important;
+}
+
+.cityselect:focus + .citylbl,.stateselect:focus + .statelbl,.funameinp:focus + .funamelbl ,.ad-titleinp:focus + .ad-titlelbl,.descriptiontextarea:focus + .descriptionlbl,.priceinp:focus + .pricelbl{
+    color:teal !important;
+    font-weight: bold;
+}
+
+.funamediv,.ad-titlediv,.priceinp,.citydiv{
+    display: flex;
+    flex-direction: column-reverse;
+    width:360px;
+}
+.uphoneinp{
+
+    border: 0px !important;
+    outline-style:none !important;
+}
+.uphoneinp:focus{
+    outline-color: teal !important;
+    outline-style: solid !important;
+}
+.state,.city{
+ width: 360px;
+ padding:8px;
+}
+.inp:focus,.textarea:focus{
+    outline-color: teal;
+}
+.adinp-sub{
+    font-size: 11px;
+    margin-right: 5px;
+}
+.ad-inp{
+    font-size: 11px;
+}
+
+.txt-inp{
+    font-size:11px;
+}
+.txtinp-sub{
+    font-size: 10.5px;
+    margin-right: 5px;
+}
+.pdiv{
+    border:1px solid black;
+    width: 360px;
+}
+.pdiv>div{
+    display: inline-block;
+    border-right: 1px solid black;
+    margin-right:5px;
+}
+.pinp{
+    outline-style: none;
+    border: 0px;
+}
+.pdiv:focus{
+border: 2px solid teal !important;
+outline-color: teal;
+outline-offset: 1px;
+}
+.price{
+    border-bottom: 1px solid black;
+}
+
+.locUl>li{
+ display: inline;
+}
+
+.locUl>li>.b1{
+    width: 160px;
+    font-size: 14px;
+    border:0px;
+    padding-left: 10px;
+ padding-right: 10px;
+    outline: none;
+    border-bottom: 4px;
+    border-color: teal;
+    border-style: solid;
+
+}
+.locUl>li>.b2{
+    width: 160px;
+    font-size: 14px;
+    border:0px;
+    padding-left: 10px;
+ padding-right: 10px;
+    outline: none;
+    border-bottom: 4px;
+    border-color: gray;
+    border-style: solid;
+
+}
+
+.locUl>li>button:focus{
+    border-bottom: 4px;
+    border-color: teal;
+    border-style: solid;
+}
+.x{
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    border-bottom: 5px;
+    border-color: gainsboro !important;
+    border-style: solid;
+}
+.card{
+    width:280px;
+    margin-left: 17px !important;
+    margin-right: 15px !important;
+    margin-bottom: 20px;
+}
+.ubtn:focus,ubtn:hover{
+    color:teal;
+    outline-color: teal;
+}

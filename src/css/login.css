@@ -1,0 +1,10 @@
+.loginwithgoogle{
+    background-color: transparent !important;
+    width: 60%;
+    margin:auto !important;
+ 
+}
+.loginwithgoogle:hover{
+    color: blue !important;
+    border: 1px solid blue !important;
+}
