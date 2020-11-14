@@ -1,26 +1,43 @@
 .carousel{
     background-color: black !important;
-    width:800px;
-    margin-left: 60px;
-    margin-top:30px;
+    max-width: 100%;
+    width:100%;
+
 }
+  
+.leftdiv{
+    max-width: 65%;
+    width:100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  
+}
+
 .postdetailimg{
-    width:700px !important;
+    max-width: 100% !important;
+    width:100% !important;
     height: 450px !important;
 }
 
 .carousel-inner{
-    padding-left: 150px;
-    padding-right: 150px;
+    padding-left: 100px;
+    padding-right: 100px;
 }
 
 .pdetails{
-    width:800px;
-    margin-left: 60px !important;
-    margin-right: 10px;
+    max-width: 100%;
+    width:100%;
 }
 .rightdiv{
-    margin-right: 60px;
+
+    max-width: 35%;
+    width: 100%;
+   display:flex;
+   flex-direction: column;
+   justify-content: flex-start;
+   align-items: center;
 
 }
 
@@ -29,9 +46,7 @@
     margin-left: auto !important;
     margin-right: auto !important;
 }
-.inner{
-    margin-top: 10px !important;
-}
+
 .cwseller{
 background-color:#002f34 !important;
 color:white !important;
@@ -55,10 +70,25 @@ font-weight: bold !important;
 }
 .innerpostedinp{
 
-        margin-top: 0;
+        margin-top: 0px;
         margin-bottom: 5px;
 }
 
 .main{
     display: flex;
+    justify-content: flex-start !important;
+    align-content: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.pannel{
+    overflow: scroll !important;
+    width: auto !important;
+}
+
+.icounter{
+    position: absolute;
+    bottom:  10px;
+    right :45px;
+    color:white;
 }

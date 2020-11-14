@@ -51,7 +51,7 @@ const grandData = {
   {cat0:"Kids Furniture",cat1:"Toys",cat2:"Prams & Walkers",cat3:"Swings & Sliders",cat4:"Kids Bikes",cat5:"Kids Accessories",},
 ],
   type:[
-  ["tablets","Mobile Phones","other"],
+  ["tablets","Mobile Phones","Other"],
   ["Sedan","Sports","Suv","Bus / Van","Trucks","Other Vehicle"],
   ["Agricultural Land","Residential Land","Industrial Land","Files","Other Land"],
   ["Agricultural Land","Residential Land","Industrial Land","Files","Other Land","Room","House","Office"],
@@ -60,7 +60,7 @@ const grandData = {
   ["Cooking Equipments","Seeds,Cops,Pesticides & Fertilizers","Farm Machinery & Equipment","Ovens & Ranges","Freezers & Coolers","Electrical & Electronic Equipment","Industrial Equipment","Mechanical Equipment","Bulldozer","Crane","Other Equipment"],
   ["Computer Classes","tutoring","Language Classes","Computer Repairing","Home Appliances Repairing","Mobile Repairing","Catering","Cooked food","Other Services"],
   ["Cv's & Resumes","Job Offer","Contract","Full Time","Part Time","Temporary" ,"Hourly Sallary","Weekly Sallary","Monthly Sallary"],
-  ["Buffalloes","Cows","Bulls","Goats","Sheep","Other Live Stock","Play Station","Xbox","Other Accessories"],
+  ["Buffalloes","Cows","Bulls","Goats","Sheep","Other Live Stock","Cats","Dogs","Other Accessories"],
   ["wooden Furniture","Iron Furniture"],
   ["Accessories for Men","Accessories for Women","Clothes for Men","clothes for Women","Footwear for Men","Footwear for Women","Watches for Men","Watches for Women","Other Men Accessories","Other Women Accessories"],
   ["Education & Trainning","Literature & Fiction","Professional Books","Other"],

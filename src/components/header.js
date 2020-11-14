@@ -6,12 +6,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import { connect } from 'react-redux';
 import { SignOut } from "../store/actions/actions";
 import Navbar from 'react-bootstrap/Navbar';
-import history from '../history';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import FormControl from 'react-bootstrap/FormControl';
 import Nav from 'react-bootstrap/Nav';
-import NavDropdown from 'react-bootstrap/NavDropdown';
 
 
 const path = {
@@ -42,7 +37,7 @@ render() {
   return(
     <>
 <Navbar bg="light" expand="lg" className="mobnav" style={{display:"none"}}>
-  <Navbar.Brand href="/"><Link to="/"><img className="logo" src={logo} alt="header" /></Link></Navbar.Brand>
+  <Navbar.Brand ><Link to="/"><img className="logo" src={logo} alt="header" /></Link></Navbar.Brand>
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   {/* collapsable nav mobile */}
   <Navbar.Collapse id="basic-navbar-nav">
@@ -53,9 +48,9 @@ render() {
          
             <img className="xxx mt-1 float-left" src={this.props.state.current_user.photo} width="56px" height="56px" alt="uimage" style={{ borderRadius:"100px"}}/>
             
-           <a>
+           <span>
             
-             <div class="float-left ml-2 mb-2">
+             <div className="float-left ml-2 mb-2">
              <span>Hello,</span>
              <br/>
              <strong>{this.props.state.current_user.name}</strong>
@@ -63,7 +58,7 @@ render() {
              <span style={{textDecoration:"underline",fontSize:"13px"}}>View and edit your profile</span>
              </div>
 
-           </a>
+           </span>
 
              </Dropdown.Item>
             {/* group1 */}
@@ -89,7 +84,7 @@ render() {
      
 
      
-      <div class="float-left ml-2 mb-2">
+      <div className="float-left ml-2 mb-2">
         <br/> 
       <strong>Enter to your account</strong>
       <br/>
@@ -101,16 +96,11 @@ render() {
 
       </Dropdown.Item>
 
-    
-     {/* group1 */}
-   <Dropdown.Item>MyAds</Dropdown.Item>
-    <Dropdown.Item>Buy Business Packages</Dropdown.Item>
-    <Dropdown.Item>Bought Packages &amp; Billing</Dropdown.Item>
-     {/* group2 */}
+
+   <Dropdown.Item>Start Selling</Dropdown.Item>
+    <Dropdown.Item>My Ads</Dropdown.Item>
+      <Dropdown.Item>Chat</Dropdown.Item>
       <Dropdown.Item>Help</Dropdown.Item>
-      <Dropdown.Item>Settings</Dropdown.Item>
-  {/* log out */}
-  <Dropdown.Item onClick={()=>this.props.SignOut()}>LogOut</Dropdown.Item>
   <Link to="/login"> <button className="btn btn-outline-primary w-100">Login</button> </Link>
 
 
@@ -148,11 +138,11 @@ render() {
     <div className="col-md-8 d-flex">
       <div className="hsearch">
         <button className="btnsearch bg-white border-0"> <i className="fa fa-search"></i></button>
-        <input placeholder="Search city, area or location" type="text" className="border-0 hinp form-control-lg" />
+        <input placeholder="Search city, area or location" title="Sorry Search is currently in UnderConstruction" type="text" className="border-0 hinp form-control-lg" />
         <button className="btndown bg-white border-0"> <i className="fa fa-chevron-down"></i></button>
       </div>
       <div className="csearch">
-        <input placeholder="Find Cars,Mobile Phones and more" type="text" className="border-0 w-100 cinp form-control-lg" />
+        <input placeholder="Find Cars,Mobile Phones and more" title="Sorry Search is currently in UnderConstruction" type="text" className="border-0 w-100 cinp form-control-lg" />
         <button className="btnsearch bg-white border-0 p-2"> <i className="fa fa-search"></i></button>
       </div>
     </div>
@@ -190,9 +180,9 @@ render() {
             <div className="float-left">
             <img className="xxx mt-1" src={this.props.state.current_user.photo} width="56px" height="56px" alt="uimage" style={{ borderRadius:"100px"}}/>
             </div>
-          <a>
+          <span>
             
-            <div class="float-left ml-2 mb-2">
+            <div className="float-left ml-2 mb-2">
             <span>Hello,</span>
             <br/>
             <strong>{this.props.state.current_user.name}</strong>
@@ -200,7 +190,7 @@ render() {
             <span style={{textDecoration:"underline",fontSize:"13px"}}>View and edit your profile</span>
             </div>
 
-          </a>
+          </span>
 
            </Dropdown.Item>
            {/* group1 */}

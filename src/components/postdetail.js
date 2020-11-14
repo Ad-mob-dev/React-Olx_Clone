@@ -10,6 +10,7 @@ class PostDetail extends React.Component {
         this.state={
           no: "** *** ****",
           showno: "Show Number",
+          currentindx : 0,
         }
 
     }
@@ -27,22 +28,44 @@ hideno(){
 }
 
 
-componentDidMount(){
-window.scrollTo(0,0)
-}
+
 
     render() {
         return (
             <>
 
-                <div className="container-fluid main">
-                    <div className="leftdiv d-inline-block">
+                <div className="main">
+                    <div className="leftdiv">
                         <div className="carousel" >
-                            <div className="carousel-inner">
+                        { typeof(this.props.location.state.image) === 'object' ? <> <div className="carousel-inner">
+                                <a href={this.props.location.state.image[this.state.currentindx]}> <img src={this.props.location.state.image[this.state.currentindx]} alt="post" className="img-responsive img-fluid postdetailimg" /></a>
+                                <span className="carousel-control-prev"><i className="carousel-control-prev-icon" onClick={()=>{this.setState({currentindx: this.state.currentindx - 1 })}}></i></span>
+                                <span className="carousel-control-next"><i className="carousel-control-next-icon" onClick={()=>{this.setState({currentindx: this.state.currentindx + 1 })}}></i></span>
+                                <span className="icounter">{this.state.currentindx+1}/{this.props.location.state.image.length}</span>
+                               
+                              </div>
+                                <div className="panel bg-white d-flex flex-row justify-content-around overflow-auto p-2">
+                              {this.props.location.state.image.map((v,i)=>{
+                                if(this.state.currentindx === this.props.location.state.image.length){
+                                    this.setState({
+                                        currentindx : this.props.location.state.image.length -1,
+                                    })
+                                }else if(this.state.currentindx < 0){
+                                    this.setState({
+                                        currentindx : 0,
+                                    })
+                                }
+                              return <a href={this.props.location.state.image[i]} className="border"> <img src={this.props.location.state.image[i]} alt="post" className="img-thumbnail img-fluid" width="100%" height="130px" style={{maxWidth:"90px",minWidth:"50px"}}/></a>
+                               
+                                })}
+                             </div> </> : 
+                                <div className="carousel-inner">
                                 <a href={this.props.location.state.image}> <img src={this.props.location.state.image} alt="post" className="img-responsive img-fluid postdetailimg" /></a>
-                                <span className="carousel-control-prev"><i className="carousel-control-prev-icon"></i></span>
-                                <span className="carousel-control-next"><i className="carousel-control-next-icon"></i></span>
+                                <span className="carousel-control-prev"><i className="carousel-control-prev-icon" onClick={()=>{this.setState({currentindx: this.state.currentindx - 1 })}}></i></span>
+                                <span className="carousel-control-next"><i className="carousel-control-next-icon" onClick={()=>{this.setState({currentindx: this.state.currentindx + 1 })}}></i></span>
+                                <span className="icounter">1/1</span>
                             </div>
+                            }
                         </div>
                         {/* details */}
                         <div className="card pdetails border p-3">
@@ -55,14 +78,14 @@ window.scrollTo(0,0)
                             </div>
                             <hr className="hr" />
                             <strong className="mb-2">Description</strong>
-                            <div className="description">
-                            <span>{this.props.location.state.description}</span>
+                            <div className="pdescription w-100">
+                            <span className="">{this.props.location.state.description}</span>
                             </div>
                         </div>
                     </div>
-                    <div className="rightdiv d-flex flex-column justify-content-start">
+                    <div className="rightdiv">
                         {/* 1 */}
-                        <div className="inner w-100 border ml-2 mr-2 p-3 mb-1 d-flex flex-column">
+                        <div className="inner w-100 border ml-2 mb-3 mr-2 p-3 d-flex flex-column">
                             <div className="">
                                 <h3>RS {this.props.location.state.price}</h3>
                                 <span>{this.props.location.state.title}</span>
@@ -74,7 +97,7 @@ window.scrollTo(0,0)
                             </div>
                         </div>
                         {/* 2 */}
-                        <div className="inner w-100 border ml-2 mt-1 mr-2 p-0 d-flex flex-column">
+                        <div className="inner w-100 border ml-2 mt-3 mb-3 mr-2 p-0 d-flex flex-column">
                             <div className="p-3">
                                 <span style={{fontSize:"20px",fontWeight:"bold"}}>Seller description</span>
                             <div className="w-100 p-3">
@@ -97,7 +120,7 @@ window.scrollTo(0,0)
                         </div>
                         {/*3  */}
 
-                        <div className="inner w-100 border w-1 ml-2 mt-2 mr-2 p-0 d-flex flex-column">
+                        <div className="inner w-100 border w-1 ml-2 mt-3 mr-2 p-0 d-flex flex-column">
                             <div className="p-3">
                                 <span  className="" style={{fontSize:"20px",fontWeight:"bold"}}>Posted in</span>
                             <div className="innerpostedin">

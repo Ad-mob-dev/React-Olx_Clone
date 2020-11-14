@@ -1,4 +1,4 @@
-
+/* 
 @media screen and (max-width: 1500px) and (min-width: 978px) {
     .mgrid{
     text-align: center !important;
@@ -136,7 +136,7 @@
 
 
 }
-     
+      */
 
 @media screen and (max-width: 767px){
     .desktopnav{
@@ -148,9 +148,9 @@
 }
 
 
-@media screen and (max-width: 549px) and (min-width: 320px) {
+@media screen and (max-width: 661px) and (min-width: 320px) {
     #root{
-        min-width: 100px;
+        min-width: 300px;
         box-sizing: border-box !important;
     }
     
@@ -187,6 +187,12 @@
      .mainrow{
          display: flex !important;
          width: auto !important;
+         height: 30px !important;
+     }
+     .logo{
+         width: 100%;
+         max-width: 45px;
+         height: 100%;
      }
      .ldiv{
          text-align: center !important;
@@ -209,8 +215,8 @@
          text-align: center;
          position: fixed;
          bottom: 50px;
-         left: 42%;
-         width: 16vw !important;
+         left: 35%;
+         width: 104px !important;
          display: block;
          transition-property: bottom;
          transition-duration: .5s;
@@ -225,7 +231,7 @@
         left: 50%;
         transform: translate(-50%,-50%);
         text-transform: uppercase;
-        font-size: 11px;
+        font-size: 12px;
         font-weight: 700;
         letter-spacing: .5px;
         color: #002f34;
@@ -251,33 +257,95 @@
     .postdetailimg{
         width:100% !important;
         height: 350px !important;
+        object-fit: fill !important;
     }
 
+   .leftdiv{
+       max-width: 100%;
+       padding: 5px;
+   }
    
     
     .rightdiv{
+        max-width: 100%;
        width:100%;
        margin-top: 5px;
        margin-bottom: 5px;
+       padding: 5px;
     }
 
     .inner{
-        margin: 10px auto auto auto !important;
+        margin: 0px auto auto auto !important;
         width: 100% !important;
      }
     
     .carousel-inner{
         padding-left: 50px;
         padding-right: 50px;
-        margin: 10px auto auto auto !important;
     }
 
     .main{
-        display: block !important;
+        display: flex !important;
+        flex-direction: column;
     }
     
     div.col-md-3.type,div.col-md-3.typed,div.col-md-3.cond,div.col-md-3.condd{
         width: 50%;
+    }
+
+    /* categories */
+    .outer{
+        max-width: 100% !important;
+        min-width: 350px !important;
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items:center !important;
+        flex-direction: column !important;
+        font-size: 11px !important;
+    }
+    .ul{
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 300px !important;
+    display: flex;
+    flex-direction: column;
+    }
+    .ul>li{
+        max-width: 50% !important;
+        width: 100% !important;
+    }
+
+    #subcat0,#subcat1,#subcat2,#subcat3,#subcat4,#subcat5,#subcat6,#subcat7,#subcat8,#subcat9,#subcat10,#subcat11,#subcat12,#subcat13{
+        width: 100% !important; 
+        max-width: 45% !important;    
+    }
+
+    .icounter{
+        position: absolute;
+        bottom:  10px;
+        right :16px;
+        color:white;
+    }
+    .headerImg{
+        min-height: 140px;
+        height: auto;
+        overflow: hidden;
+    }
+    .adinp-sub{
+        font-size: 10px;
+        margin-right: 0px;
+    }
+    .ad-inp{
+        font-size: 9px;
+    }
+    .txt-inp{
+        font-size:9.5px;
+    }
+    .txtinp-sub{
+        font-size: 9.5px;
+        margin-right: 0px;
     }
 
  }

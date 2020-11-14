@@ -16,6 +16,7 @@ constructor() {
         name: "Home",
         headerImg: "https://statics.olx.com.pk/external/base/img/hero_bg_pk.jpg",
         data : {},
+        limit: 4,
     }
 
 }
@@ -23,6 +24,8 @@ constructor() {
 componentDidMount(){
   return this.props.getPosts();
 }
+
+
     render(){
 
     return(
@@ -32,7 +35,13 @@ componentDidMount(){
         <span style={{fontSize:"24px",marginLeft:"55px"}} className="fresh font-weight-bold">FRESH RECOMENDATIONS</span>
         <div className="container-fluid mgrid">
         <ul className="list-unstyled ">
-        <HomeProduct post={this.props.state.Posts}/>
+        <HomeProduct post={this.props.state.Posts} limit={this.state.limit}/>
+        <button className="btn btn-outline-primary loadmore d-block m-auto" onClick={()=>{
+
+        this.setState({
+            limit: this.state.limit +2,
+                })
+        }} >Load More</button>
         </ul>
         </div>
         </>

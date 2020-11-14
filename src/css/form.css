@@ -1,6 +1,8 @@
 .maindiv{
-          width: 900px !important;
-        margin:auto;
+          width: 100% !important;
+          min-width: 320px !important;
+          max-width: 1000px !important;
+        margin:auto !important;
         border: 1px solid black;
 }
 .fheader{
@@ -50,10 +52,13 @@
     font-weight: bold;
 }
 
-.funamediv,.ad-titlediv,.priceinp,.citydiv{
+.funamediv,.ad-titlediv,.priceinp,.citydiv,.statediv,.description,.price{
     display: flex;
     flex-direction: column-reverse;
-    width:360px;
+    max-width:370px !important;
+    width: 100% !important;
+    min-width: 280px !important;
+
 }
 .uphoneinp{
 
@@ -65,7 +70,9 @@
     outline-style: solid !important;
 }
 .state,.city{
- width: 360px;
+    max-width:370px !important;
+    width: 100% !important;
+    min-width: 280px !important;
  padding:8px;
 }
 .inp:focus,.textarea:focus{
@@ -104,7 +111,7 @@ border: 2px solid teal !important;
 outline-color: teal;
 outline-offset: 1px;
 }
-.price{
+.p-outer{
     border-bottom: 1px solid black;
 }
 

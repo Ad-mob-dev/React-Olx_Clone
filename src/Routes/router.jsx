@@ -8,6 +8,7 @@ import Post from '../components/post';
 import Form from '../components/form';
 import Login from '../components/login';
 import PostDetail from '../components/postdetail';
+import ScrollToTop from '../components/scrolltotop';
 
 
 
@@ -16,6 +17,7 @@ render(){
     return(
       
         <Router>
+            <ScrollToTop/>
             <Header/>
             <Switch>
             <Route exact path='/' component={Home} />
@@ -33,6 +35,7 @@ render(){
             <Route exact path='/postdetails' component={PostDetail} />
             </Switch>
             <Footer/>
+          
         </Router>
        
     )

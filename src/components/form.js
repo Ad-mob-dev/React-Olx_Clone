@@ -15,43 +15,183 @@ class Form extends React.Component {
             description: "",
             price: "",
             state: "",
-            file:"",
-            filename:"",
-            image : "",
+            file:[],
+            filename:[],
+            image : [],
             time:"",
             city:"",
+            user : {
+                name: "",
+                photo: "",
+                id : "",
+                creation : "",
+                no: "",
+            },
+           
+           
+           
+            noErr : "",
+            priceErr : "",
+            condErr:"",
+            descriptionErr:"",
+            titleErr : "",
+            fileErr:"",
+            stateErr:"",
+            titlecount:0, 
+            descriptioncount:0,          
+            errCD:"",
+            errNC : "",
+            errDC: "",
+            errTC:"",
+            errPC:"",
+            errFL:"",
+            errST:"",
+
+           
+           
+    
+
+
         }
+
+       
+        
     }
 
     async change() {
-        
-            var storagRef = storage.ref(`${this.state.category} / ${this.state.filename}`);
-            await storagRef.put(this.state.file).then((snapshot)=> snapshot.ref.getDownloadURL().then((url)=>{
-               this.setState({
-                   image: url,
-               })
-            }));
+
             // storagRef.getDownloadURL().then((url)=> console.log(url)).catch((e)=> alert(e.code));
-          await  fb.database().ref().child("Ads/"+this.state.category).push(this.state).then(data => 
-            {alert("Ad Posted");
-        }).catch((error)=>
-            {
-                alert(error.message);
-            });    
-   
+
+                if(this.state.city === "" && this.state.state === "" && this.state.condition === ""  && this.state.title === "" && this.state.description === ""  && this.state.user.no === "" && this.state.price === "" ){  
+                    this.setState({
+                        titleErr : "Title cannot be Empty",
+                        errTC : "alert alert-danger",
+                        descriptionErr : "Description cannot be Empty",
+                        errDC : "alert alert-danger",
+                        priceErr : "Price cannot be Empty",
+                        errPC : "alert alert-danger",
+                        noErr: "Invalid Number... Please Enter Your Number First",
+                        errNC : "alert alert-danger",
+                        stateErr : "State Cannot Be Empty",
+                        errST: "alert alert-danger",
+                        cityErr : "City Cannot Be Empty",
+                        errCT: "alert alert-danger",
+                      })
+               
+                }else if(this.state.user.no === ""){
+                  this.setState({
+                    noErr: "Invalid Number...Please Enter Your Number to Post",
+                    errNC : "alert alert-danger",
+                  })
+                }else if(this.state.price === ""){
+                   this.setState({
+                     priceErr: "Please Enter Price it cant be Empty",
+                     errPC : "alert alert-danger",
+                   })
+                 }else if(this.state.state === ""){
+                    this.setState({
+                        stateErr : "State Cannot Be Empty",
+                        errST: "alert alert-danger",
+                    })
+                 }else if(this.state.city === ""){
+                    this.setState({
+                        cityErr : "City Cannot Be Empty",
+                        errCT: "alert alert-danger",
+                    })
+                 }else if(this.state.description === ""){
+                    this.setState({
+                        descriptionErr : "Description Cannot Be Empty",
+                        errDC: "alert alert-danger",
+                    })
+                 }else if(this.state.title === ""){
+                    this.setState({
+                        titleErr : "Title Cannot Be Empty",
+                        errTC: "alert alert-danger",
+                    })
+                 }else{
+                     
+                    let ads = {
+                        parent : this.props.location.state.parentName,
+                        category : this.props.location.state.name,
+                        condition: this.state.condition,
+                        type: this.state.type,
+                        title: this.state.title,
+                        description: this.state.description,
+                        price: this.state.price,
+                        state: this.state.state,
+                        file:this.state.file,
+                        filename:this.state.filename,
+                        image : this.state.image,
+                        time: this.state.time,
+                        city: this.state.city,
+                        user : {
+                            name: this.state.user.name,
+                            photo: this.state.user.photo,
+                            id : this.state.user.id,
+                            creation : this.state.user.creation,
+                            no: this.state.user.no,
+                        },
+                     }
+                    await fb.database().ref().child("Ads/"+this.state.category).push(ads).then( (data)=>{
+
+                        this.setState({
+                            state : "",
+                            noErr : "",
+                            priceErr : "",
+                            condErr:"",
+                            descriptionErr:"",
+                            titleErr : "",
+                            fileErr:"",
+                            stateErr:"",
+                            cityErr: "",
+                            titlecount:0, 
+                            descriptioncount:0,          
+                            errCD:"",
+                            errNC : "",
+                            errDC: "",
+                            errTC:"",
+                            errPC:"",
+                            errFL:"",
+                            errST:"",
+                            errCT: "",
+                        })
+                   alert("Ad Posted");
+                    }
+                    ).catch((error)=>{ alert(error.message);
+                        });    
+                }
+                
+                
+               
         }
 
-
+// nogetter
     numgetter(e){
-        this.setState({
-            user : {
-                name: this.props.state.current_user.name,
-                photo: this.props.state.current_user.photo,
-                id : this.props.state.current_user.id,
-                creation : this.props.state.current_user.creationDate,
-                no: e.target.value,
-            }
-        })
+        if(e.target.value === ""){
+            this.setState({
+                noErr : "Phone No is Required",
+                errNC : "alert alert-danger",
+                user:{
+                    me: this.props.state.current_user.name,
+                    photo: this.props.state.current_user.photo,
+                    id : this.props.state.current_user.id,
+                    creation : this.props.state.current_user.creationDate,
+                    no:"",
+                }
+            })
+        }else{
+            this.setState({
+                user : {
+                    name: this.props.state.current_user.name,
+                    photo: this.props.state.current_user.photo,
+                    id : this.props.state.current_user.id,
+                    creation : this.props.state.current_user.creationDate,
+                    no: e.target.value,
+                },
+                noErr : "",
+                errNC: "",
+            })
+        }
     }
 
     getter(e) {
@@ -63,36 +203,139 @@ class Form extends React.Component {
         e.target.parentNode.childNodes[4].click();
 
     }
-
+// condition
     setCondition(e) {
+        if(e.target.value === ""){
         this.setState({
-            condition: e.target.value,
+
+            condErr : "Select Something from Above",
+            errCD: "alert alert-danger",
+        })
+    }else{
+            this.setState({
+                condition: e.target.value,               
         })
     }
+}
 
+// type
     setType(e) {
         this.setState({
             type: e.target.value,
         })
     }
+// title
     inputgetter(e) {
         let name = e.target.name;
-        let val = e.target.value;
-        this.setState({
-            [name]: val,
-        })
+            let val = e.target.value;
+            let count = val.length;
+        if(e.target.value.length > 0 && e.target.value.length < 5 ){
+            this.setState({
+                titlecount:count,
+                titleErr:"Length of Char is less than 5",
+                errTC : "alert alert-danger",
+            })
+        }else if(e.target.value === "" ){
+        
+            this.setState({
+                titlecount:0,
+                titleErr:"",
+                errTC : "",
+            })
+        }else{
+                this.setState({
+                    [name]: val,
+                    titleErr : "Perfect",
+                    titlecount:count,
+                    errTC : "alert alert-success",
+                })
+            }
+      
 
     }
+// price
+    pricegetter(e){
+        let name = e.target.name;
+        let val = e.target.value;
+        let count = val.length;
+    if(e.target.value === "0" ){
+        this.setState({
+            titlecount:count,
+            priceErr:"A Price can not be set to 0 Rs",
+            errPC : "alert alert-danger",
+        })
+    }else if(e.target.value === "" ){
+    
+        this.setState({
+            priceErr:"",
+            errPC : "",
+        })
+    }else{
+            this.setState({
+                [name]: val,
+                priceErr : "Perfect",
+                errPC : "alert alert-success",
+            })
+        }  
+    }
 
+    // Description
+    descgetter(e) {
+            let name = e.target.name;
+            let val = e.target.value;
+            let count = val.length;
+        if(e.target.value.length > 0 && e.target.value.length < 20 ){
+            this.setState({
+                descriptioncount:count,
+               descriptionErr:"Length of Characters is less than 20",
+                errDC : "alert alert-danger",
+            })
+        }else if(e.target.value === "" ){
+        
+            this.setState({
+                descriptoncount:0,
+                descriptionErr:"",
+                errDC : "",
+            })
+        }else{
+                this.setState({
+                    [name]: val,
+                    descriptionErr : "Perfect !!",
+                   descriptioncount:count,
+                    errDC : "alert alert-success",
+                })
+            }
+      
+
+    }
+// city
     setselectcity(e) {
+        if(e.target.options[e.target.selectedIndex].value === ""){
+            this.setState({
+               cityErr: "Please Select City from Above",
+                errCT : "alert alert-danger",
+            })
+        }else{
         this.setState({
             city : e.target.options[e.target.selectedIndex].value,
+            cityErr: "Perfect",
+            errCT: "alert alert-success",
         })
     }
-    
+    }
+    // state
     setselectopt(e) {
+   if(e.target.options[e.target.selectedIndex].value === ""){
+       this.setState({
+           stateErr: "Please Select State from Above",
+           errST : "alert alert-danger",
+       })
+   }else{
+      this.getUrl();
         this.setState({
             state: e.target.options[e.target.selectedIndex].value,
+            stateErr: "Perfect",
+            errST: "alert alert-success",
         })
         
         if(e.target.options[e.target.selectedIndex].value === "Azad kashmir"){
@@ -170,35 +413,71 @@ class Form extends React.Component {
             document.getElementById("pjb").classList.add("d-none");
             document.getElementById("sind").classList.add("d-none");
         }
+    }
         
         
     }
-
+// photo
     filegetter(e){
         let dat =  new Date();
         dat = dat.toLocaleString();
-        if(e.target.files[0]){
-        let file = e.target.files[0];
-        console.log(file)
-        this.setState({
-            file: file,
-            filename: file.name,
-            time: dat,
+        if(e.target.files){
+         let filearr = [];
+         let filenamearr = [];
+        let file = e.target.files;
+        console.log("file===>",file);
+        Object.values(file).map((val)=>{
+     
+            filearr.push(val);
+            filenamearr.push(val.name);
+           return this.setState({
+                file: filearr,
+                filename : filenamearr,  
+                time: dat,
+                fileErr : "Successfully Uploaded",
+                errFL : "alert alert-success",
+            })
         })
-    }   
+    }else{
+        return this.setState({
+            fileErr : "Image is Invalid",
+            errFL : "alert alert-danger",
+        })
     }
-
+    }
+// input handle from button
     handleClick(e){
         e.target.parentNode.childNodes[1].click();
     }
+
+  getUrl = ()=>{
+        let imagearr = [];
+        this.state.file.map((v)=>{
+           var storagRef = storage.ref(`${this.state.category} / ${v.name}`);
+        return storagRef.put(v).then((snapshot)=> snapshot.ref.getDownloadURL().then((url)=>{
+                  imagearr.push(url);
+                  this.setState({
+                
+                   image:imagearr,
+                   
+    
+                })
+              }));
+       
+           })
+    }
+
     render() {
+        
         const data = {
             parentName: this.props.location.state.parentName,
             name: this.props.location.state.name,
             type: this.props.location.state.type,
         }
         return (
+
             <>
+            {console.log("result==>",this.state)}
                 <h4 style={{ textAlign: "center",fontSize:"24px",fontWeight:"700", }}>POST YOUR AD</h4>
                 <div className="maindiv">
                     {/* categories */}
@@ -216,16 +495,17 @@ class Form extends React.Component {
                                 <input type="radio" name="condition" className="used pr-3 pl-3 pt-2 pb-2 bg-transparent d-none" value="Used" onClick={(e) => { this.setCondition(e) }} />
                                 <button type="radio" className="used pr-3 pl-3 pt-2 pb-2 bg-transparent" onClick={(e) => this.getter2(e)}>Used</button>
                             </label>
+                            <p>{this.state.condErr}</p>
                         </div>
                         
                         {/* type */}
                         <div className="type mb-4">
                             <label>Type*</label><br/>
                             {data.type.map((v, i) => {
-                                return <input type="radio" name={`type ${i}`} key={i} className="new pr-3 pl-3 pt-2 pb-2 mr-2 bg-transparent d-none" value={v} onClick={(e) => { this.setType(e) }} />
+                                return <input type="radio" name={`type ${i}`} key={i} className="new pr-3 pl-3 mb-2 pt-2 pb-2 mr-2 bg-transparent d-none" value={v} onClick={(e) => { this.setType(e) }} />
                             })}
                             {data.type.map((v, i) => {
-                                return <button value={v} name="type" key={i} className="new pr-3 pl-3 pt-2 pb-2 mr-2 bg-transparent" onClick={(e) => { e.target.parentNode.childNodes[i + 2].click() }}>
+                                return <button value={v} name="type" key={i} className="new pr-3 pl-3 pt-2 mb-2 pb-2 mr-2 bg-transparent" onClick={(e) => { e.target.parentNode.childNodes[i + 2].click() }}>
                                     {v}
                                 </button>
                             })
@@ -235,39 +515,40 @@ class Form extends React.Component {
                         {/* ad-title */}
                         <div className="inputfield mb-4">
                            <div className="form-group ad-titlediv">
-                           <span className="d-inline-block adinp-sub">A minimum length of 5 characters is required. Please edit the field.&nbsp;&nbsp;&nbsp;<span className="ad-inp">0/70</span></span>
+                           <span className="d-inline-block adinp-sub">A minimum length of 5 characters is required. Please edit the field.&nbsp;&nbsp;&nbsp;<span className="ad-inp">{this.state.titlecount}/70</span></span>
+                            <span className={this.state.errTC}>{this.state.titleErr}</span> 
                             <input id="title" name="title" type="text" autoComplete="off" className="inp d-block ad-titleinp" maxLength="70" required onChange={(e) => { this.inputgetter(e) }} />
                             <label className="ad-titlelbl">Ad Title*</label>
                            </div>
                         </div>
                         {/* description */}
-                        <div className="Description d-flex flex-column-reverse">
-                            <span className="d-inline-block txtinp-sub">A minimum length of 20 characters is required. Please edit the field.&nbsp; &nbsp;<span className="txt-inp">0/4096</span></span>
-                            <textarea required autoComplete="off" id="description" className="descriptiontextarea  description d-block" maxLength="4096" name="description" placeholder="" onChange={(e) => { this.inputgetter(e) }} style={{ height: "96px", width: "360px" }}></textarea>
+                        <div className="description">
+                    <span className="d-inline-block txtinp-sub">A minimum length of 20 characters is required. Please edit the field.&nbsp; &nbsp;<span className="txt-inp">{this.state.descriptioncount}/4096</span></span>
+                    <span className={this.state.errDC}>{this.state.descriptionErr}</span>
+                            <textarea required autoComplete="off" id="description" className="descriptiontextarea  description d-block" maxLength="4096" name="description" placeholder="" onChange={(e) => { this.descgetter(e) }} style={{ height: "96px", width: "360px" }}></textarea>
                             <label className="descriptionlbl">Description*</label>
+                            
                         </div>
                     </div>
                     {/* price */}
-                    <div className="price d-flex flex-column-reverse p-3">
-{/* 
-                        <div className="pdiv p-2">
-                            <div></div>
-                          
-                        </div> */}
-                        
-                       <input id="price" required name="price" placeholder="1000" type="text" autoComplete="off" className="priceinp" data-aut-id="inPrice" min="0" onChange={(e) => this.inputgetter(e)} pattern="(\d+[., \s]?\d?)*" />
+                    <div className="p-outer p-3">  
+                    <div className="pinne price">                      
+                    <p className={this.state.errPC}>{this.state.priceErr}</p>
+                       <input id="price" required name="price" placeholder="1000" type="number" autoComplete="off" className="priceinp"  min="0" max="99999999999999999999999999" onChange={(e) => this.pricegetter(e)} pattern="(\d+[., \s]?\d?)*" />
                         <label className="pricelbl">Price*</label>
                         <h5 className="font-weight-bold">SET PRICE</h5>
+                        </div>
                     </div>
                     {/* upload photos */}
                     <div className="upload p-3">
                         <h5 className="font-weight-bold pb-lg-2">UPLOAD UPTO 12 PHOTOS</h5>
                         <input required accept="image/png,image/jpeg" multiple autoComplete="off" type="file" name="image" className="d-none" onChange={(e) => this.filegetter(e)}/>
-                        <button className="p-lg-4 m-auto border-gray bg-white ubtn" onClick={(e) => {this.handleClick(e)}}>
+                            <button className="p-lg-4 m-auto border-gray bg-white ubtn" onClick={(e) => {this.handleClick(e)}}>
                             <svg width="36px" height="36px" viewBox="0 0 1024 1024" data-aut-id="icon" fillRule="evenodd"><path d="M861.099 667.008v78.080h77.568v77.653h-77.568v77.141h-77.568v-77.184h-77.611v-77.611h77.611v-78.080h77.568zM617.515 124.16l38.784 116.437h165.973l38.827 38.827v271.659l-38.827 38.357-38.741-38.4v-232.832h-183.125l-38.784-116.48h-176.853l-38.784 116.48h-183.083v426.923h426.667l38.784 38.357-38.784 39.253h-465.493l-38.741-38.869v-504.491l38.784-38.827h165.973l38.827-116.437h288.597zM473.216 318.208c106.837 0 193.92 86.955 193.92 194.048 0 106.923-87.040 194.091-193.92 194.091s-193.963-87.168-193.963-194.091c0-107.093 87.083-194.048 193.963-194.048zM473.216 395.861c-64.213 0-116.352 52.181-116.352 116.395 0 64.256 52.139 116.437 116.352 116.437 64.171 0 116.352-52.181 116.352-116.437 0-64.213-52.181-116.437-116.352-116.437z"></path></svg>
                             <br />
                             <span style={{ fontSize: "12px" }}>Add Photo</span>
                         </button>
+                        <p className={this.state.errFL}>{this.state.fileErr}</p>
                     </div>
                     {/*  Location */}
                     <div className="location p-3">
@@ -278,9 +559,9 @@ class Form extends React.Component {
                         </ul>
                         {/*State for Cities  */}
                         <div className="statediv d-flex flex-column-reverse">
-                           
+                             <p className={this.state.errST}>{this.state.stateErr}</p>
                             <select className="state stateselect" size="0" required onChange={(e) => { this.setselectopt(e) }}>
-                                <option selected> </option>
+                                <option selected value="">Select State</option>
                                 <option value="Azad kashmir">Azad Kashmir</option>
                                 <option value="Balochistan">Balochistan</option>
                                 <option value="Islamabad">Islamabad Capital Territory</option>
@@ -293,9 +574,9 @@ class Form extends React.Component {
                         </div>
                         {/* Cities of State*/}
                         <div className="citydiv d-none mt-2" id="ak">
-                           
+                        <p className={this.state.errCT}>{this.state.cityErr}</p>
                             <select className="city cityselect" size="0" required onChange={(e) => { this.setselectcity(e) }}>
-                              <option selected> </option>
+                              <option selected value="">Select City</option>
                                 <option value="Bhimber">Bhimber</option>
                                 <option value="Hajira">Hajira</option>
                                 <option value="Kotli">Kotli</option>
@@ -307,8 +588,9 @@ class Form extends React.Component {
                             <label className="citylbl">City*</label>
                        </div>
                         <div className="citydiv mt-2 d-none" id="bl">
+                        <p className={this.state.errCT}>{this.state.cityErr}</p>
                             <select className="city cityselect" size="0" required onChange={(e) => { this.setselectcity(e) }}>
-                              <option selected> </option>
+                              <option selected value="">Select City</option>
                                 <option value="Bella">Bella</option>
                                 <option value="Jiwani">Jiwani</option>
                                 <option value="Gawadar">Gawadar</option>
@@ -324,15 +606,17 @@ class Form extends React.Component {
                             <label className="citylbl">City*</label>
                        </div>
                         <div className="citydiv mt-2 d-none" id="isl">
+                        <p className={this.state.errCT}>{this.state.cityErr}</p>
                             <select className="city cityselect" size="0" required onChange={(e) => { this.setselectcity(e) }}>
-                              <option selected> </option>
+                              <option selected>Select City</option>
                                 <option value="Islamabad">Islamabad</option>
                             </select>
                             <label className="citylbl">City*</label>
                        </div>
                         <div className="citydiv mt-2 d-none" id="kpk">
+                        <p className={this.state.errCT}>{this.state.cityErr}</p>
                             <select className="city cityselect" size="0" required onChange={(e) => { this.setselectcity(e) }}>
-                            <option defaultValue=""></option>    
+                            <option selected value="">Select City</option>    
                             <option value="Abbottabad">Abbottabad</option>
                             <option value="Ali Masjid">Ali Masjid</option>
                             <option value="Bannu">Bannu</option>
@@ -371,8 +655,10 @@ class Form extends React.Component {
                             <label className="citylbl">City*</label>
                         </div>
                         <div className="citydiv mt-2 d-none" id="na">
+                        <p className={this.state.errCT}>{this.state.cityErr}</p>
                             <select className="cityselect" size="0" required onChange={(e) => { this.setselectcity(e) }}>
-                              <option selected> </option>
+                              
+                              <option selected value="">Select City</option>
                              <option value="Askoley">Askoley</option>
                              <option value="Chilas">Chilas</option>
                              <option value="Ghanche">Ghanche</option>
@@ -384,8 +670,9 @@ class Form extends React.Component {
                             <label className="citylbl">City*</label>
                        </div>
                         <div className="citydiv mt-2 d-none" id="pjb">
+                        <p className={this.state.errCT}>{this.state.cityErr}</p>
                             <select className="city cityselect" size="0" required onChange={(e) => { this.setselectcity(e) }}>
-                            <option value=""></option>
+                            <option selected value="">Select City</option>
                             <option value="Ahmadpur East">Ahmadpur East</option>
                             <option value="Arifwala">Arifwala</option>
                             <option value="Attock">Attock</option>
@@ -461,8 +748,9 @@ class Form extends React.Component {
                             <label className="citylbl">City*</label>
                        </div>
                         <div className="citydiv mt-2 d-none" id="sind">
+                        <p className={this.state.errCT}>{this.state.cityErr}</p>
                             <select className="city cityselect" size="0" required onChange={(e) => { this.setselectcity(e) }}>
-                            <option value=""></option>
+                            <option selected value="">Select City</option>
                             <option value="Badin">Badin</option>
                             <option value="Dadu">Dadu</option>
                             <option value="Ghotki">Ghotki</option>
@@ -492,18 +780,18 @@ class Form extends React.Component {
                         <h5 className="font-weight-bold">REVIEW YOUR DETAILS</h5>
                         <div className="d-inline-block">
                           
-                        <figure className="d-inline-block">
+                        <figure className="d-inline-block float-left">
                             <img alt="userImage" src={this.props.state.current_user.photo} width="90px" height="90px" style={{borderRadius:"100%"}}/>
                         </figure>
                       
-                      <div className="funamediv float-right ml-3 mt-1 form-group">
+                      <div className="funamediv float-left ml-3 mt-1 form-group">
                         <input type="text" required className="funameinp" name="funame" value={this.props.state.current_user.name}/>
                         <label className="funamelbl">Name</label>
                         </div>
-                        <div className="uphonediv">
+                        <div className="uphonediv float-left">
                         <label className="ml-3 uphonelbl">Your phone number</label>
-                        <input type="tel" required={true} className="uphoneinp ml-4 text-right" onChange={(e)=>{this.numgetter(e)}} name="uphone"/> 
-                       
+                        <input type="tel" required className="uphoneinp ml-4 text-right" onChange={(e)=>{this.numgetter(e)}} name="uphone"/> 
+                        <p className={this.state.errNC}>{this.state.noErr}</p>
 
                         </div>
                         </div>

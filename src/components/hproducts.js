@@ -9,6 +9,7 @@ class HomeProduct extends React.Component {
 
     this.state = {
       state: "",
+
     }
 
   }
@@ -16,6 +17,7 @@ class HomeProduct extends React.Component {
 
   showInner = (e) => {
     console.log(e.currentTarget.childNodes);
+    console.log(this.props)
 
   }
 
@@ -24,7 +26,7 @@ class HomeProduct extends React.Component {
     return (
       <>
 
-        {Object.keys(this.props.post).map((key) => {
+        {Object.keys(this.props.post).slice(0,this.props.limit).map((key) => {
           return <React.Fragment key={key}>
             {Object.keys(this.props.post[key]).slice(-2).map((ikey) => {
               arr.push(this.props.post[key].[ikey]) 
@@ -36,14 +38,15 @@ class HomeProduct extends React.Component {
               }>
 
                 <li key={ikey} className="d-inline-block p-3 bg-white xcard card" onClick={(e) => { this.showInner(e) }}>
+                <span className="float-left d-flex justify-content-start" style={{color:"gray"}}>{key}</span>
                   <span className="d-flex justify-content-end mb-4"><button style={{ position: "absolute", fontSize: "25px", background: "white", border: "0px" }}><i className="fa fa-heart-o fa-1x"></i></button></span>
 
                   <figure className="d-block text-center" >
-                    <img src={this.props.post[key].[ikey].image} style={{ width: "180px", height: "144px",padding:"5px",marginTop:"20px" }} alt="product" className="img-fluid img-responsive"/>
+                    <img src={this.props.post[key].[ikey].image} style={{ width: "200px", height: "184px",padding:"5px",marginTop:"20px",objectFit:"fill" }} alt="product" className="img-fluid img-responsive"/>
                   </figure>
 
                   <div className="pricce" style={{ width: "200px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-                    <span className="font-weight-bolder" style={{ fontSize: '20px' }}>Rs {this.props.post[key][ikey].price}</span>
+                    <span className="font-weight-bolder" style={{ fontSize: '20px',color:"black"}}>Rs {this.props.post[key][ikey].price}</span>
                     <br />
                     <span style={{ fontSize: '15px', color: "gray", overflowY: "hidden", textOverflow: "ellipsis" }}>{this.props.post[key].[ikey].title}</span>
                   </div>

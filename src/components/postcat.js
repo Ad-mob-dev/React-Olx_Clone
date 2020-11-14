@@ -258,7 +258,7 @@ class Postcat extends React.Component {
 
             {Object.keys(grandData.sub).map((key) => {
               return <>
-                <ul id={"subcat" + key} className="float-left list-unstyled">
+                <ul key={key} id={"subcat" + key} className="float-left list-unstyled">
                   {Object.keys(grandData.sub[key]).map((catkey) => {
                     return <Link to={{
                       pathname: grandData.pathname,
