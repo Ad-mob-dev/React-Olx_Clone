@@ -1,0 +1,13 @@
+[debug] [2020-11-14T16:30:22.223Z] ----------------------------------------------------------------------
+[debug] [2020-11-14T16:30:22.228Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\AD\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2020-11-14T16:30:22.229Z] CLI Version:   8.1.1
+[debug] [2020-11-14T16:30:22.230Z] Platform:      win32
+[debug] [2020-11-14T16:30:22.230Z] Node Version:  v12.16.2
+[debug] [2020-11-14T16:30:22.231Z] Time:          Sat Nov 14 2020 21:30:22 GMT+0500 (Pakistan Standard Time)
+[debug] [2020-11-14T16:30:22.232Z] ----------------------------------------------------------------------
+[debug] [2020-11-14T16:30:22.232Z] 
+[debug] [2020-11-14T16:30:22.252Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-11-14T16:30:22.253Z] > authorizing via signed-in user
+[debug] [2020-11-14T16:30:22.253Z] [iam] checking project olx-pk-1 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2020-11-14T16:30:22.261Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/olx-pk-1:testIamPermissions  
+ {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
